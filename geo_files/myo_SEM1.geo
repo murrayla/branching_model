@@ -48,6 +48,7 @@ POI_N = 0;
 ENT_N = 0;
 LOO_N = 1;
 SUR_N = 1;
+VOL_N = 1;
 
 // ==== BEFORE SPLIT [0um] ==== //
 // Points and Lines
@@ -97,25 +98,26 @@ ENT_N = ENT_N + j - 1;
 LOO_N = LOO_N + 1;
 SUR_N = SUR_N + 1;
 
-// ==== CONNECTION [0-2um] ==== //
+// // ==== CONNECTION [0-2um] ==== //
 
 For k In {1:ZD0_PN - 1}
     BSpline(ENT_N + k) = {k, ZD0_PN + k};
 EndFor
 
 For z In {1:ZD0_PN - 1}
-    Curve Loop(LOO_N + z) = {k, ZD0_PN + ZD1_PN + k, - (ZD0_PN + k), - (ZD0_PN + ZD1_PN + k - 1) };
-    Surface(SUR_N + z) = {LOO_N + z};
+    If (z == 1)
+        Curve Loop(LOO_N + 2 * z + 1) = {ZD0_PN - 1, ZD0_PN + ZD1_PN - 1, - (ENT_N), - (3 * (ZD0_PN - 1))};
+    EndIf
+    If (z != 1)
+        Curve Loop(LOO_N + 2 * z + 1) = {ZD0_PN - z, 3 * ZD0_PN - z - 1, - (ENT_N - z + 1), - (3 * ZD0_PN - z - 2)};
+    EndIf
+    Surface(SUR_N + z - 1) = {LOO_N + 2 * z + 1};
 EndFor
 
-// Curve Loop(5) = {1, 10, -5, -9};
-// Surface(3) = {5};
-// Curve Loop(7) = {2, 11, -6, -10};
-// Surface(4) = {7};
-// Curve Loop(9) = {7, -12, -3, 11};
-// Surface(5) = {9};
-// Curve Loop(11) = {8, -9, -4, 12};
-// Surface(6) = {11};
-// Surface Loop(1) = {3, 6, 5, 4, 2, 1};
-// Volume(1) = {1};
+ENT_N = ENT_N + k - 1;
+SUR_N = SUR_N + z - 1; 
+LOO_N = LOO_N + z - 1; 
+
+Surface Loop(VOL_N) = {1:(SUR_N - 1)};
+Volume(VOL_N) = {VOL_N};
 

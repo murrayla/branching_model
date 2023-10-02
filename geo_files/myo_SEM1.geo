@@ -67,7 +67,7 @@ Plane Surface(SUR_N) = {Z1_N};
 //
 POI_N = POI_N + i - 1;
 ENT_N = ENT_N + j - 1;
-LOO_N = LOO_N + 1;
+LOO_N = LOO_N + 2;
 SUR_N = SUR_N + 1;
 
 // ==== SPLIT POINT [2um] ==== //
@@ -88,17 +88,17 @@ EndFor
 POI_N = POI_N + i - 1;
 ENT_N = ENT_N + j - 1;
 //
-Line(ENT_N + 1) = {POI_N, POI_N - 4};
-Line(ENT_N + 2) = {POI_N, POI_N - 2};
+Line(ENT_N + 1) = {POI_N, POI_N - 3};
+Line(ENT_N + 2) = {POI_N, POI_N - 1};
 //
 ENT_N = ENT_N + 2;
 // Loops and Surfaces
-Curve Loop(LOO_N) = {ENT_N - 1, ENT_N, ENT_N - 3, ENT_N - 2};
+Curve Loop(LOO_N) = {ENT_N - 1, ENT_N, ENT_N - 3, ENT_N - 4};
 Plane Surface(SUR_N) = {LOO_N};
-Curve Loop(LOO_N + 2) = {ENT_N - 5, ENT_N - 4, ENT_N, ENT_N - 1};
+Curve Loop(LOO_N + 2) = {ENT_N - 1, ENT_N, ENT_N - 2, ENT_N - 5};
 Plane Surface(SUR_N + 1) = {LOO_N + 2};
 //
-LOO_N = LOO_N + 2;
+LOO_N = LOO_N + 4;
 SUR_N = SUR_N + 2;
 
 // ==== CONNECTION [0-2um] ==== //
@@ -110,16 +110,16 @@ ENT_N = ENT_N + k - 1;
 //
 For z In {1:ZD0_PN - 1}
     If (z == 1)
-        Curve Loop(LOO_N + 2 * z + 1) = {ZD0_PN - 1, ENT_N - 3, - (ENT_N - 6), - ENT_N};
+        Curve Loop(LOO_N + 2 * z) = {ZD0_PN - 1, ENT_N - 3, - (ENT_N - 6), - ENT_N};
     EndIf
     If (z != 1)
-        Curve Loop(LOO_N + 2 * z + 1) = {ZD0_PN - z, ENT_N - z + 1, - (ENT_N - 5 - z), - (ENT_N - z + 2)};
+        Curve Loop(LOO_N + 2 * z) = {ZD0_PN - z, ENT_N - z + 1, - (ENT_N - 5 - z), - (ENT_N - z + 2)};
     EndIf
-    Surface(SUR_N + z - 1) = {LOO_N + 2 * z + 1};
+    Surface(SUR_N + z - 1) = {LOO_N + 2 * z};
 EndFor
 //
 SUR_N = SUR_N + z - 1; 
-LOO_N = LOO_N + z - 1; 
+LOO_N = LOO_N + ZD0_PN * 2; 
 //
 Surface Loop(VOL_N) = {1:(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
@@ -139,9 +139,14 @@ For j In {1:ZD2_EB_PN - 2}
     EndIf
 EndFor
 //
+Curve Loop(LOO_N) = {ENT_N + 1, ENT_N + 2, ENT_N + 3, ENT_N + 4};
+Surface(SUR_N) = {LOO_N};
+//
 POI_N = POI_N + i - 1;
 ENT_N = ENT_N + j - 1;
-// // Top Ellipse
+LOO_N = LOO_N + 2;
+SUR_N = SUR_N + 1;
+// Top Ellipse
 For i In {1:ZD2_ET_PN}
     Point(i + POI_N) = {EX_T[i-1], EY_T[i-1] + GAP, Z2, MSH_S}; 
 EndFor
@@ -154,5 +159,10 @@ For j In {1:ZD2_ET_PN - 2}
     EndIf
 EndFor
 //
+Curve Loop(LOO_N) = {ENT_N + 1, ENT_N + 2, ENT_N + 3, ENT_N + 4};
+Surface(SUR_N) = {LOO_N};
+//
 POI_N = POI_N + i - 1;
 ENT_N = ENT_N + j - 1;
+LOO_N = LOO_N + 1;
+SUR_N = SUR_N + 1;

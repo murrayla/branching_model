@@ -31,7 +31,7 @@ ZD1_PN = 5;
 Z1 = Z0 + 1 * SARC_L;
 // Z-Disc 2 Params
 Z3_N = 3;
-GAP = 0.05;
+GAP = 0.1;
 ZD2_ET_PN = 6;
 ZD2_EB_PN = 6;
 Z2 = Z0 + 2 * SARC_L;
@@ -195,7 +195,7 @@ EndFor
 SUR_N = SUR_N + z - 1; 
 LOO_N = LOO_N + ZD0_PN * 2; 
 //
-Surface Loop(VOL_N) = {SUR_N - 11, SUR_N - 5, (SUR_N - 4):(SUR_N - 1)};
+Surface Loop(VOL_N) = {SUR_N - 12, SUR_N - 6, (SUR_N - 4):(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
 //
 VOL_N = VOL_N + 1;
@@ -226,7 +226,7 @@ EndFor
 SUR_N = SUR_N + z - 1; 
 LOO_N = LOO_N + ZD0_PN * 2; 
 //
-Surface Loop(VOL_N) = {SUR_N - 11, SUR_N - 5, (SUR_N - 4):(SUR_N - 1)};
+Surface Loop(VOL_N) = {SUR_N - 15, SUR_N - 9, (SUR_N - 4):(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
 //
 VOL_N = VOL_N + 1;
@@ -294,7 +294,7 @@ EndFor
 SUR_N = SUR_N + z - 1; 
 LOO_N = LOO_N + ZD0_PN * 2; 
 //
-Surface Loop(VOL_N) = {SUR_N - 11, SUR_N - 5, (SUR_N - 4):(SUR_N - 1)};
+Surface Loop(VOL_N) = {SUR_N - 16, SUR_N - 6, (SUR_N - 4):(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
 //
 VOL_N = VOL_N + 1;
@@ -317,7 +317,7 @@ EndFor
 SUR_N = SUR_N + z - 1; 
 LOO_N = LOO_N + ZD0_PN * 2; 
 //
-Surface Loop(VOL_N) = {SUR_N - 11, SUR_N - 5, (SUR_N - 4):(SUR_N - 1)};
+Surface Loop(VOL_N) = {SUR_N - 19, SUR_N - 9, (SUR_N - 4):(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
 //
 VOL_N = VOL_N + 1;

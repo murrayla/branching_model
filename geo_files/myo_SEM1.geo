@@ -31,7 +31,7 @@ ZD1_PN = 5;
 Z1 = Z0 + 1 * SARC_L;
 // Z-Disc 2 Params
 Z3_N = 3;
-GAP = 0.1;
+GAP = 0.5;
 ZD2_ET_PN = 6;
 ZD2_EB_PN = 6;
 Z2 = Z0 + 2 * SARC_L;
@@ -321,3 +321,5 @@ Surface Loop(VOL_N) = {SUR_N - 19, SUR_N - 9, (SUR_N - 4):(SUR_N - 1)};
 Volume(VOL_N) = {VOL_N};
 //
 VOL_N = VOL_N + 1;
+// 
+Mesh 3;

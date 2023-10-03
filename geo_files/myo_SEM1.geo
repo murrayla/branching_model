@@ -166,3 +166,58 @@ POI_N = POI_N + i - 1;
 ENT_N = ENT_N + j - 1;
 LOO_N = LOO_N + 1;
 SUR_N = SUR_N + 1;
+
+// ==== CONNECTION [2-4um] ==== //
+// Bottom Ellipse
+For k In {1:ZD2_EB_PN - 2}
+    If (k == 1)
+        BSpline(ENT_N + k) = {POI_N - 13 + k, POI_N - 12 + k};
+    Else
+        BSpline(ENT_N + k) = {POI_N - 17 + k, POI_N - 12 + k};
+    EndIf
+EndFor
+//
+ENT_N = ENT_N + k - 1;
+// //
+// For z In {1:ZD2_EB_PN - 2}
+//     If (z >= 3)
+//         Curve Loop(LOO_N + 2 * z) = {ZD0_PN - 1, ENT_N - 3, - (ENT_N - 6), - ENT_N};
+//     Else
+//         Curve Loop(LOO_N + 2 * z) = {ZD0_PN - z, ENT_N - z + 1, - (ENT_N - 5 - z), - (ENT_N - z + 2)};
+//     EndIf
+//     Surface(SUR_N + z - 1) = {LOO_N + 2 * z};
+// EndFor
+// //
+// SUR_N = SUR_N + z - 1; 
+// LOO_N = LOO_N + ZD0_PN * 2; 
+// //
+// Surface Loop(VOL_N) = {1:(SUR_N - 1)};
+// Volume(VOL_N) = {VOL_N};
+// // Top Ellipse
+// For k In {1:ZD2_ET_PN - 2}
+//     If (k >= 3)
+//         BSpline(ENT_N + k) = {POI_N - 9 - k, POI_N - 6 + k};
+//     Else
+//         BSpline(ENT_N + k) = {POI_N - 17 + k, POI_N - 6 + k};
+//     EndIf
+// EndFor
+// //
+// ENT_N = ENT_N + k - 1;
+
+{..., ENT_N - k + 1, ..., - (ENT_N - k + 2)}
+//+
+Curve Loop(21) = {10, 26, 18, -23};
+//+
+Surface(10) = {21};
+//+
+Curve Loop(23) = {7, 26, -17, -25};
+//+
+Surface(11) = {23};
+//+
+Curve Loop(25) = {6, 25, -16, -24};
+//+
+Surface(12) = {25};
+//+
+Curve Loop(27) = {9, 24, -15, -23};
+//+
+Surface(13) = {27};

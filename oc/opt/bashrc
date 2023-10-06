@@ -1,0 +1,10 @@
+export PYTHONPATH=/home/jovyan/work/morphic:$PYTHONPATH
+export PYTHONPATH=/home/jovyan/work/pca:$PYTHONPATH
+export PATH=/opt/conda/bin/:$PATH
+export PYTHONPATH=/home/jovyan/work/mesh-tools:$PYTHONPATH
+export PYTHONPATH=/home/jovyan/work/morphic:$PYTHONPATH
+export PYTHONPATH=/home/jovyan/work/utilities:$PYTHONPATH
+
+export JUPYTER_PATH=/home/jovyan/work/mesh-tools:$JUPYTER_PATH
+export JUPYTER_PATH=/home/jovyan/work/morphic:$JUPYTER_PATH
+export JUPYTER_PATH=/home/jovyan/work/utilities:$JUPYTER_PATH   
